@@ -1,4 +1,4 @@
-Othello/Reversi Game 
+## Othello/Reversi Game 
 
 This is an individual assigment to Automation and Industrial Robotics Project (PARI - Projecto em Automação e Robótica Industrial) at University of Aveiro.
 
