@@ -1,0 +1,18 @@
+/** @mainpage Trabalho de Casa da Aula 7 de PARI - Etapa 1
+*
+* @section intro_sec Othello - Etapa 1
+*
+*As definições e estruturas de dados devem estar criadas. As seguintes funções devem estar
+operacionais:\n
+InitGame()\n
+PrintGameBoard()\n
+GetPlayerMove()\n
+SaveGame()\n
+LoadGame()\n
+O programa deve compilar e deve executar, e demonstrar que as funções acima funcionam. O programa pode fazer mais do que isto, mas isto é o mínimo requerido.\n
+*
+*
+*
+*
+*
+*/
