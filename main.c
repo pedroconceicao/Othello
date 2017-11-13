@@ -2,9 +2,9 @@
 *
 @file main.c
 *
-@brief TPC da Aula 7 - Etapa 1
+@brief TPC da Aula 7 - Etapa 2
 *
-* Othello Game - TPC7 - Etapa 1
+* Othello Game - TPC7 - Etapa 2
 *
 *
 @author Pedro,
@@ -53,7 +53,6 @@ int main(int argc, char *argv[])
 		printf("\n### COMMANDS : q/Q - quit ; s/S - Save ; l/L - Load ###\n\n");
 		do  // loop until valid user play
        	{	
-			//printf("\nWIN %d\n",WinGame(jg,JOGADOR1));
 			if ( WinGame(jg,JOGADOR1)){printf("\n ####    No possible moves. Skiping turn!    ####\n");break;} 			  //Skip play if no movements possible
 			m=GetPlayerMove(jg);                    //Player 1 plays
        	} while( ! CheckMove( jg , m , JOGADOR1));// || win==0);
