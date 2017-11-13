@@ -85,9 +85,9 @@ logo PARIlogo.png:
 # Regra relativa à geração do ficheiro de protótipos
 #
 # Generate a list of functions (useful for prototypes)
-proto prototypes.h: $(SRC)
-	@echo "Rebuild prototypes.h"
-	@../genproto.sh   #script to generate the "prototypes.h" header file
+#proto prototypes.h: $(SRC)
+#	@echo "Rebuild prototypes.h"
+#	@../genproto.sh   #script to generate the "prototypes.h" header file
 
 ###########################################
 # targets que não são ficheiros e evita
