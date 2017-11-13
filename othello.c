@@ -307,7 +307,7 @@ int CheckLeft (othello *jg , int l , int c , int player)
 	if(player==JOGADOR2){opponent=JOGADOR1;}
 	if(jg -> T[l][c-1] == opponent)
 	{
-		do{c--;}while(jg -> T[l][c] == opponent && c>-1);
+		do{c--;}while(jg -> T[l][c] == opponent && c>0);
 		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
@@ -326,7 +326,7 @@ int CheckUp (othello *jg , int l , int c , int player)
 	if(player==JOGADOR2){opponent=JOGADOR1;}
 	if(jg -> T[l-1][c] == opponent)
 	{
-		do{l--;}while(jg -> T[l][c] == opponent && l>-1);
+		do{l--;}while(jg -> T[l][c] == opponent && l>0);
 		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
@@ -345,7 +345,7 @@ int CheckDown (othello *jg , int l , int c , int player)
 	if(player==JOGADOR2){opponent=JOGADOR1;}
 	if(jg -> T[l+1][c] == opponent)
 	{
-		do{l++;}while(jg -> T[l][c] == opponent && l<8);
+		do{l++;}while(jg -> T[l][c] == opponent && l<7);
 		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
@@ -364,9 +364,9 @@ int CheckUpRight (othello *jg , int l , int c , int player)
 	if(player==JOGADOR2){opponent=JOGADOR1;}
 	if(jg -> T[l-1][c+1] == opponent)
 	{
-		do{l--;c++;}while(jg -> T[l][c] == opponent && l>-1 && c<8);
-		//if(jg-> T[l][c] == player){return 1;}
-		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
+		do{l--;c++;}while(jg -> T[l][c] == opponent && l>0 && c<7);
+		//if(jg-> T[l][c] == player){return 1;
+		if(jg-> T[l][c] == VAZIO){printf("\n%d %d",l,c);return (c+1)*10+l+1;}
 	}
 	return 0;
 }
@@ -383,7 +383,7 @@ int CheckUpLeft (othello *jg , int l , int c , int player)
 	if(player==JOGADOR2){opponent=JOGADOR1;}
 	if(jg -> T[l-1][c-1] == opponent)
 	{
-		do{l--;c--;}while(jg -> T[l][c] == opponent && l>-1 && c>-1);
+		do{l--;c--;}while(jg -> T[l][c] == opponent && l>0 && c>0);
 		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
@@ -421,7 +421,7 @@ int CheckDownLeft (othello *jg , int l , int c , int player)
 	if(player==JOGADOR2){opponent=JOGADOR1;}
 	if(jg -> T[l+1][c-1] == opponent)
 	{
-		do{l++;c--;}while(jg -> T[l][c] == opponent && l<8 && c>-1);
+		do{l++;c--;}while(jg -> T[l][c] == opponent && l<7 && c>0);
 		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
