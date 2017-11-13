@@ -1,8 +1,8 @@
-## Othello/Reversi Game 
+# Othello/Reversi Game 
 
 This is an individual assigment to Automation and Industrial Robotics Project (PARI - Projecto em Automação e Robótica Industrial) at University of Aveiro.
 
-The goal was to program the Othello/Reversi Game to be played in the terminal. It is possible to play against the computer (comment line #64 and uncomment line #65 in main() ) or agains another player (comment line #65 and uncomment line #64 in main() ). The computer plays randomly within the rules of the game.
+The goal was to program the Othello/Reversi Game to be played in the terminal. It is possible to play against the computer by choosing singleplayer or against another player by choosing multiplayer. The computer plays randomly within the rules of the game.
 
 When there are no possible moves the game ends and there's a winner.
 
