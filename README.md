@@ -9,4 +9,5 @@ When there are no possible moves the game ends and there's a winner.
 The player plays by writing the cell coordinates in the terminal from A1 to H8. If the play isn't possible it will be asked for a new coordinate. If the player presses "Q" or "q" the game quits, "S" or "s" to save game to "othello.txt" and "L" or "l" to load game from "othello.txt".
 
 Pedro Conceição - Aveiro - 11/11/2017
+
 Masters in Industrial Automation Engineering. 
