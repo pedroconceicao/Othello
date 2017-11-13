@@ -31,7 +31,11 @@ Copyright Copyright (c) 2017, Pedro
 #include "pcolor.h"
 #include "othello.h"
 
-
+/**
+* @brief Gets the input to choose either singleplayer or multiplayer
+* @param void
+* @return Op char. 1 for singleplayer, 2 for multiplayer
+*/
 char Option(void)
 {	
 	char op=0;
@@ -139,16 +143,13 @@ int LoadGame(othello *jg, char *filename)
 	fclose(fp);
 
 	char *token;
-	for(int l=0;l<8;l++) //for each line
-	{	
-		int c=0;
-		token=strtok(str,",\n");
-		while(token!=NULL)
-		{
-			jg -> T[l][c]= * token;
-			token=strtok(NULL,",\n");
-			c++;//next column
-		}
+	int c=0;
+	token=strtok(str,",\n");
+	while(token!=NULL)
+	{
+		jg -> T[0][c]= * token;
+		token=strtok(NULL,",\n");
+		c++;//next column
 	}
 
 	free(str);
@@ -232,7 +233,11 @@ int GetPlayerMove(othello *jg)
 	else{return c*10+atoi(&l);}
 }
 
-
+/**
+* @brief Checks if the given move is possible
+* @param Pointer to board array, Desired move, player 
+* @return Int 1 if move is possible, Int 0 if move is not possible
+*/
 int CheckMove( othello *jg , int move , int player )
 {
 	for(int l=0;l<8;l++)
@@ -271,6 +276,11 @@ int CheckMove( othello *jg , int move , int player )
 }
 
 
+/**
+* @brief Checks the right direction of a given cell
+* @param Pointer to board array, int line, int collumn, player
+* @return Possible move coordinates if there's any else returns 0
+*/
 int CheckRight (othello *jg , int l , int c , int player)
 {
 	int opponent=0;
@@ -278,13 +288,18 @@ int CheckRight (othello *jg , int l , int c , int player)
 	if(player==JOGADOR2){opponent=JOGADOR1;}
 	if(jg -> T[l][c+1] == opponent)
 	{
-		do{c++;}while(jg -> T[l][c] == opponent && c<8);
-		if(jg-> T[l][c] == player){return 1;}
+		do{c++;}while(jg -> T[l][c] == opponent && c<7);
+		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
 
+/**
+* @brief Checks the left direction of a given cell
+* @param Pointer to board array, int line, int collumn, player
+* @return Possible move coordinates if there's any else returns 0
+*/
 int CheckLeft (othello *jg , int l , int c , int player)
 {
 	int opponent=0;
@@ -293,12 +308,17 @@ int CheckLeft (othello *jg , int l , int c , int player)
 	if(jg -> T[l][c-1] == opponent)
 	{
 		do{c--;}while(jg -> T[l][c] == opponent && c>-1);
-		if(jg-> T[l][c] == player){return 1;}
+		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
 
+/**
+* @brief Checks the up direction of a given cell
+* @param Pointer to board array, int line, int collumn, player
+* @return Possible move coordinates if there's any else returns 0
+*/
 int CheckUp (othello *jg , int l , int c , int player)
 {
 	int opponent=0;
@@ -307,12 +327,17 @@ int CheckUp (othello *jg , int l , int c , int player)
 	if(jg -> T[l-1][c] == opponent)
 	{
 		do{l--;}while(jg -> T[l][c] == opponent && l>-1);
-		if(jg-> T[l][c] == player){return 1;}
+		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
 
+/**
+* @brief Checks the down direction of a given cell
+* @param Pointer to board array, int line, int collumn, player
+* @return Possible move coordinates if there's any else returns 0
+*/
 int CheckDown (othello *jg , int l , int c , int player)
 {
 	int opponent=0;
@@ -321,12 +346,17 @@ int CheckDown (othello *jg , int l , int c , int player)
 	if(jg -> T[l+1][c] == opponent)
 	{
 		do{l++;}while(jg -> T[l][c] == opponent && l<8);
-		if(jg-> T[l][c] == player){return 1;}
+		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
 
+/**
+* @brief Checks the upright direction of a given cell
+* @param Pointer to board array, int line, int collumn, player
+* @return Possible move coordinates if there's any else returns 0
+*/
 int CheckUpRight (othello *jg , int l , int c , int player)
 {
 	int opponent=0;
@@ -335,12 +365,17 @@ int CheckUpRight (othello *jg , int l , int c , int player)
 	if(jg -> T[l-1][c+1] == opponent)
 	{
 		do{l--;c++;}while(jg -> T[l][c] == opponent && l>-1 && c<8);
-		if(jg-> T[l][c] == player){return 1;}
+		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
 
+/**
+* @brief Checks the upleft direction of a given cell
+* @param Pointer to board array, int line, int collumn, player
+* @return Possible move coordinates if there's any else returns 0
+*/
 int CheckUpLeft (othello *jg , int l , int c , int player)
 {
 	int opponent=0;
@@ -349,12 +384,17 @@ int CheckUpLeft (othello *jg , int l , int c , int player)
 	if(jg -> T[l-1][c-1] == opponent)
 	{
 		do{l--;c--;}while(jg -> T[l][c] == opponent && l>-1 && c>-1);
-		if(jg-> T[l][c] == player){return 1;}
+		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
 
+/**
+* @brief Checks the downright direction of a given cell
+* @param Pointer to board array, int line, int collumn, player
+* @return Possible move coordinates if there's any else returns 0
+*/
 int CheckDownRight (othello *jg , int l , int c , int player)
 {
 	int opponent=0;
@@ -362,13 +402,18 @@ int CheckDownRight (othello *jg , int l , int c , int player)
 	if(player==JOGADOR2){opponent=JOGADOR1;}
 	if(jg -> T[l+1][c+1] == opponent)
 	{
-		do{l++;c++;}while(jg -> T[l][c] == opponent && l<8 && c<8);
-		if(jg-> T[l][c] == player){return 1;}
+		do{l++;c++;}while(jg -> T[l][c] == opponent && l<7 && c<7);
+		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
 
+/**
+* @brief Checks the downleft direction of a given cell
+* @param Pointer to board array, int line, int collumn, player
+* @return Possible move coordinates if there's any else returns 0
+*/
 int CheckDownLeft (othello *jg , int l , int c , int player)
 {
 	int opponent=0;
@@ -377,13 +422,17 @@ int CheckDownLeft (othello *jg , int l , int c , int player)
 	if(jg -> T[l+1][c-1] == opponent)
 	{
 		do{l++;c--;}while(jg -> T[l][c] == opponent && l<8 && c>-1);
-		if(jg-> T[l][c] == player){return 1;}
+		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
 
-
+/**
+* @brief Reverses the pieces after a play
+* @param Pointer to board array, int move (cell the user chose to play), player
+* @return void
+*/
 void ReversePieces(othello *jg , int move , int player)
 {
 	int l=move%10-1;
@@ -494,7 +543,11 @@ void ReversePieces(othello *jg , int move , int player)
 
 }
 
-
+/**
+* @brief Checks if there are any possible moves for a given player
+* @param Pointer to board array, player
+* @return 1 if there are no possible moves, 0 if there is at least one possible move
+*/
 int WinGame(othello *jg,int player)
 {
 	int flag=0, l, c;
@@ -522,6 +575,12 @@ int WinGame(othello *jg,int player)
 	return 0;
 }
 
+
+/**
+* @brief Generates a move for the CPU
+* @param Pointer to game board
+* @return Move to be played
+*/
 int GenerateMove(othello *jg)
 {
 	int moves[100]={0};
