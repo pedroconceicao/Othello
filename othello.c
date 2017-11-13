@@ -32,6 +32,19 @@ Copyright Copyright (c) 2017, Pedro
 #include "othello.h"
 
 
+char Option(void)
+{	
+	char op=0;
+	while(op!='1' && op!='2')
+	{
+		printf("\nType '1' to singleplayer or '2' to multiplayer\nOption:");
+		op=getchar();
+		getchar();
+		fflush(stdin);
+	}
+	return	op;	
+}
+
 /**
 * @brief InitGame
 * @param Pointer to game char array (*jg)
@@ -148,12 +161,12 @@ int LoadGame(othello *jg, char *filename)
 * @param void
 * @return player move from 11 to 88; 11 to quit; 10 to load game; 9 to save game
 */
+
 int GetPlayerMove(othello *jg)
 {
 	char c_cor, l, aux;
 	int c=0;
 	do{
-		printf("\n### COMMANDS : q/Q - quit ; s/S - Save ; l/L - Load ###\n\n");
 		printf("Next move coordinates or command: ");
 		scanf(" %c",&c_cor);
 		scanf("%c",&l);
@@ -211,7 +224,7 @@ int GetPlayerMove(othello *jg)
 				case'H':
 					c=8;break;
 				default:
-					printf("Opção Inválida. Tente novamente! \n");
+					printf("Invalid Option. Try again! \n");
 			}
 		}
 	}while(c==0);
@@ -484,12 +497,12 @@ void ReversePieces(othello *jg , int move , int player)
 
 int WinGame(othello *jg,int player)
 {
-	int score1=0, score2=0, flag=0, l, c;
+	int flag=0, l, c;
 	for( l=0;l<8;l++)
 	{
 		for( c=0;c<8;c++)
 		{
-			if(jg->T[l][c]==VAZIO){
+			if(jg->T[l][c]==player){
 				if(CheckRight(jg,l,c,player)){flag=1;break;}
 				if(CheckLeft(jg,l,c,player)){flag=1;break;}
 				if(CheckUp(jg,l,c,player)){flag=1;break;}
@@ -503,16 +516,7 @@ int WinGame(othello *jg,int player)
 		if(flag) break;
 	}
 
-	if(! flag){
-		for(int l=0; l<8; l++){
-			for(int c=0; c<8; c++){
-				if(jg -> T[l][c]==JOGADOR1) score1++;
-				if(jg -> T[l][c]==JOGADOR2) score2++;
-			}
-		}
-		if(score1>score2) printf("\n\nPlayer 1 wins! Player 1 %d - %d Player2\n\n", score1,score2);
-		else if(score1<score2) printf("\n\nPlayer 2 wins! Player 2 %d - %d Player 1\n\n", score2,score1);
-		else printf("\n\nDraw! Player 1 %d - %d Player 2\n\n",score1,score2);
+	if(!flag){
 		return 1;
 	}
 	return 0;
@@ -530,42 +534,42 @@ int GenerateMove(othello *jg)
 			if(jg -> T[l][c] == JOGADOR2)
 			{
 				int check_right=CheckRight(jg,l,c,JOGADOR2);
-				if(check_right>10 && check_right<100){
+				if(check_right>10 && check_right<89){
 					moves[moves_count]=check_right;
 					moves_count++;
 				}		
 				int check_left=CheckLeft(jg,l,c,JOGADOR2);
-				if(check_left>10 && check_left<100){
+				if(check_left>10 && check_left<89){
 					moves[moves_count]=check_left;
 					moves_count++;
 				}
 				int check_up=CheckUp(jg,l,c,JOGADOR2);
-				if(check_up>10 && check_up<100){
+				if(check_up>10 && check_up<89){
 					moves[moves_count]=check_up;
 					moves_count++;
 				}
 				int check_down=CheckDown(jg,l,c,JOGADOR2);
-				if(check_down>10 && check_down<100){
+				if(check_down>10 && check_down<89){
 					moves[moves_count]=check_down;
 					moves_count++;
 				}		
 				int check_upright=CheckUpRight(jg,l,c,JOGADOR2);
-				if(check_upright>10 && check_upright<100){
+				if(check_upright>10 && check_upright<89){
 					moves[moves_count]=check_upright;
 					moves_count++;
 				}
 				int check_upleft=CheckUpLeft(jg,l,c,JOGADOR2);
-				if(check_upleft>10 && check_upleft<100){
+				if(check_upleft>10 && check_upleft<89){
 					moves[moves_count]=check_upleft;
 					moves_count++;
 				}				
 				int check_downright=CheckDownRight(jg,l,c,JOGADOR2);
-				if(check_downright>10 && check_downright<100){
+				if(check_downright>10 && check_downright<89){
 					moves[moves_count]=check_downright;
 					moves_count++;
 				}				
 				int check_downleft=CheckDownLeft(jg,l,c,JOGADOR2);
-				if(check_downleft>10 && check_downleft<100){
+				if(check_downleft>10 && check_downleft<89){
 					moves[moves_count]=check_downleft;
 					moves_count++;
 				}
