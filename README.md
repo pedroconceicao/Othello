@@ -6,7 +6,7 @@ The goal was to program the Othello/Reversi Game to be played in the terminal. I
 
 <p align="center"><img src="othello.png" width="350" title="Initial screen"/> <img src="othello_end.png" width="350" title="End screen"/></p>
 
-When there are no possible moves the game ends and there's a winner.
+When there are no possible moves for a given player, the game skips that player turn. The game ends when there are no possible moves for both players.
 
 The player plays by writing the cell coordinates in the terminal from A1 to H8. If the play isn't possible it will be asked for a new coordinate. If the player presses "Q" or "q" the game quits, "S" or "s" to save game to "othello.txt" and "L" or "l" to load game from "othello.txt".
 
