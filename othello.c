@@ -10,6 +10,7 @@
 @author Pedro,
 pedro.s.conceicao@ua.pt
 *
+https://github.com/pedroconceicao/Othello
 *
 @internal
 *
