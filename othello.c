@@ -189,8 +189,9 @@ int GetPlayerMove(othello *jg)
 		}
 		if(c_cor=='l' || c_cor =='L'){
 			int load_game=LoadGame(jg,"othello.txt");
+			printf ("\033c");
 			printf("\nLoading game...\n");
-			if(load_game){printf("Game loaded!\n");PrintGameBoard( jg );}
+			if(load_game){printf("Game loaded!");PrintGameBoard( jg );printf("\n");}
 			else{printf("Game not found.\nExiting\n");break;}
 			c=91;
 			break;
@@ -289,7 +290,6 @@ int CheckRight (othello *jg , int l , int c , int player)
 	if(jg -> T[l][c+1] == opponent)
 	{
 		do{c++;}while(jg -> T[l][c] == opponent && c<7);
-		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
@@ -308,7 +308,6 @@ int CheckLeft (othello *jg , int l , int c , int player)
 	if(jg -> T[l][c-1] == opponent)
 	{
 		do{c--;}while(jg -> T[l][c] == opponent && c>0);
-		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
@@ -327,7 +326,6 @@ int CheckUp (othello *jg , int l , int c , int player)
 	if(jg -> T[l-1][c] == opponent)
 	{
 		do{l--;}while(jg -> T[l][c] == opponent && l>0);
-		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
@@ -346,7 +344,6 @@ int CheckDown (othello *jg , int l , int c , int player)
 	if(jg -> T[l+1][c] == opponent)
 	{
 		do{l++;}while(jg -> T[l][c] == opponent && l<7);
-		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
@@ -365,8 +362,7 @@ int CheckUpRight (othello *jg , int l , int c , int player)
 	if(jg -> T[l-1][c+1] == opponent)
 	{
 		do{l--;c++;}while(jg -> T[l][c] == opponent && l>0 && c<7);
-		//if(jg-> T[l][c] == player){return 1;
-		if(jg-> T[l][c] == VAZIO){printf("\n%d %d",l,c);return (c+1)*10+l+1;}
+		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
 }
@@ -384,7 +380,6 @@ int CheckUpLeft (othello *jg , int l , int c , int player)
 	if(jg -> T[l-1][c-1] == opponent)
 	{
 		do{l--;c--;}while(jg -> T[l][c] == opponent && l>0 && c>0);
-		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
@@ -403,7 +398,6 @@ int CheckDownRight (othello *jg , int l , int c , int player)
 	if(jg -> T[l+1][c+1] == opponent)
 	{
 		do{l++;c++;}while(jg -> T[l][c] == opponent && l<7 && c<7);
-		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
@@ -422,7 +416,6 @@ int CheckDownLeft (othello *jg , int l , int c , int player)
 	if(jg -> T[l+1][c-1] == opponent)
 	{
 		do{l++;c--;}while(jg -> T[l][c] == opponent && l<7 && c>0);
-		//if(jg-> T[l][c] == player){return 1;}
 		if(jg-> T[l][c] == VAZIO){return (c+1)*10+l+1;}
 	}
 	return 0;
@@ -593,42 +586,42 @@ int GenerateMove(othello *jg)
 			if(jg -> T[l][c] == JOGADOR2)
 			{
 				int check_right=CheckRight(jg,l,c,JOGADOR2);
-				if(check_right>10 && check_right<89){
+				if(check_right){
 					moves[moves_count]=check_right;
 					moves_count++;
 				}		
 				int check_left=CheckLeft(jg,l,c,JOGADOR2);
-				if(check_left>10 && check_left<89){
+				if(check_left){
 					moves[moves_count]=check_left;
 					moves_count++;
 				}
 				int check_up=CheckUp(jg,l,c,JOGADOR2);
-				if(check_up>10 && check_up<89){
+				if(check_up){
 					moves[moves_count]=check_up;
 					moves_count++;
 				}
 				int check_down=CheckDown(jg,l,c,JOGADOR2);
-				if(check_down>10 && check_down<89){
+				if(check_down){
 					moves[moves_count]=check_down;
 					moves_count++;
 				}		
 				int check_upright=CheckUpRight(jg,l,c,JOGADOR2);
-				if(check_upright>10 && check_upright<89){
+				if(check_upright){
 					moves[moves_count]=check_upright;
 					moves_count++;
 				}
 				int check_upleft=CheckUpLeft(jg,l,c,JOGADOR2);
-				if(check_upleft>10 && check_upleft<89){
+				if(check_upleft){
 					moves[moves_count]=check_upleft;
 					moves_count++;
 				}				
 				int check_downright=CheckDownRight(jg,l,c,JOGADOR2);
-				if(check_downright>10 && check_downright<89){
+				if(check_downright){
 					moves[moves_count]=check_downright;
 					moves_count++;
 				}				
 				int check_downleft=CheckDownLeft(jg,l,c,JOGADOR2);
-				if(check_downleft>10 && check_downleft<89){
+				if(check_downleft){
 					moves[moves_count]=check_downleft;
 					moves_count++;
 				}

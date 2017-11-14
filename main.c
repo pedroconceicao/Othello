@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 {   
 	//Singleplayer or Multiplayer
 	int option=Option()-'0';  //Turns '1' or '2' char into 1 or 2 int
-
+	
 	othello jg1;
     othello *jg = & jg1; //pointer "jg" to "jg1" struct
     int m, score1=0, score2=0;
@@ -53,9 +53,10 @@ int main(int argc, char *argv[])
 		printf("\n### COMMANDS : q/Q - quit ; s/S - Save ; l/L - Load ###\n\n");
 		do  // loop until valid user play
        	{	
-			if ( WinGame(jg,JOGADOR1)){printf("\n ####    No possible moves. Skiping turn!    ####\n");break;} 			  //Skip play if no movements possible
+			if ( WinGame(jg,JOGADOR1)){printf("\n ####    No possible moves. Skiping turn!    ####\n");sleep(2);break;} 			  //Skip play if no movements possible
 			m=GetPlayerMove(jg);                    //Player 1 plays
        	} while( ! CheckMove( jg , m , JOGADOR1));// || win==0);
+		printf ("\033c"); //Clear terminal to show updated board
         PrintGameBoard( jg );
         if ( WinGame(jg,JOGADOR2) && WinGame(jg,JOGADOR1)) break;   // Game Over if either player can't play
 
@@ -71,10 +72,11 @@ int main(int argc, char *argv[])
 		//###### PLAYER 2/COMPUTER #######
         do  // loop until valid computer play
         {
-			if (WinGame(jg,JOGADOR2)){printf("\n ####    No possible moves. Skiping turn!    ####\n");break;} 			  //Skip play if no movements possible
+			if (WinGame(jg,JOGADOR2)){printf("\n ####    No possible moves. Skiping turn!    ####\n");sleep(2);break;} 			  //Skip play if no movements possible
 			if(option==1){m=GenerateMove(jg);sleep(1);}   //CPU plays /sleep simulates pc thinking. optional)
 			if(option==2) m=GetPlayerMove(jg);            //OR Player 2 plays
         } while( ! CheckMove( jg , m , JOGADOR2));
+		printf ("\033c"); //Clear terminal to show updated board
         PrintGameBoard( jg );
 		if ( WinGame(jg,JOGADOR1) && WinGame(jg,JOGADOR2)) break;   // Game Over if either player can't play
 
